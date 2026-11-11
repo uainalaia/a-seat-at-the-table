@@ -1,0 +1,86 @@
+/* The four learning stages remain in the shared frame, before every route. */
+.site-wayfinding { position:sticky;top:0;z-index:40;background:var(--ivory); }
+.site-wayfinding .site-header { position:relative;top:auto; }
+.site-wayfinding .journey-nav { width:100%;max-width:1440px;margin:0 auto;padding:10px var(--gutter) 14px; }
+.site-wayfinding .journey-nav ol { gap:12px; }
+.site-wayfinding .journey-nav a { min-height:68px;padding:10px 14px;align-items:center; }
+.site-wayfinding .journey-step { align-self:center; }
+.site-wayfinding .journey-nav strong { font-size:26px; }
+.site-wayfinding .journey-nav small { display:block;margin-top:5px; }
+.site-wayfinding .journey-nav a[aria-current='step'] { background:var(--linen);color:var(--burgundy); }
+.dining-hero:not(.is-seated) { height:calc(100svh - var(--frame-height,180px) - 24px);min-height:590px; }
+:root { scroll-padding-top:calc(var(--frame-height,180px) + 20px); }
+.site-footer { padding-block:32px; }
+.site-footer .footer-bottom { margin-top:0;padding-top:0;border:0; }
+.directory-gallery { position:sticky;align-self:start;top:calc(var(--frame-height,180px) + 24px); }
+.directory-gallery figure { margin-bottom:0; }
+.directory-preview-note { margin-top:20px;min-height:3.6em; }
+.moment-section>div:first-child,.survey-introduction { top:calc(var(--frame-height,180px) + 24px); }
+.directory-preview-note p { font-family:var(--display);font-size:26px;line-height:1.25;max-width:32ch;color:var(--burgundy);margin:0; }
+.directory-preview-note p[hidden] { display:none; }
+.moment-questions summary>span { display:block; }
+.moment-reveal { display:block;font-family:var(--body);font-size:14px;margin-top:12px;color:var(--muted); }
+.moment-questions details[open] .moment-reveal { display:none; }
+.moment-questions details[open] p,.moment-questions details[open] a { color:var(--ivory); }
+.moment-questions details[open] .learning-source { color:#eadbd0; }
+.moment-questions summary .arrow-icon { flex-shrink:0; }
+.moment-questions>details>div { padding-bottom:26px; }
+.moment-section>div:first-child>.text-link { margin-top:26px; }
+.learning-source { font-family:var(--body);font-size:14px!important;line-height:1.65!important;color:var(--muted);margin-top:18px; }
+.learning-source a { text-underline-offset:3px; }
+.historical-foundation { margin-block:42px;padding:30px;background:#eee5d7; }
+.historical-foundation h2 { font-family:var(--display);font-size:34px;margin:0 0 18px; }
+.historical-foundation p:last-child { margin-bottom:0; }
+.carreno-feature { display:grid;grid-template-columns:minmax(220px,.75fr) minmax(0,1.25fr);gap:clamp(32px,7vw,110px);align-items:center;padding-block:30px 80px; }
+.carreno-book { aspect-ratio:4/5;background:var(--salon);color:#d6ba87;padding:clamp(26px,4vw,55px);display:flex;flex-direction:column;justify-content:space-between; }
+.carreno-book>span:first-child { font-size:17px;line-height:1.4; }
+.carreno-book>span:nth-child(2) { font-family:var(--display);font-size:clamp(32px,4vw,58px);line-height:1.02; }
+.carreno-book>span:last-child { font-size:14px; }
+.carreno-feature h2 { font-size:clamp(38px,4vw,58px);line-height:1.05;margin-bottom:25px; }
+.carreno-feature p { max-width:65ch; }
+.carreno-context { margin-top:24px; }
+.carreno-context summary { min-height:44px;cursor:pointer;color:var(--burgundy); }
+.carreno-context p { font-size:16px;line-height:1.6; }
+.room-guide .table-item-list { max-height:300px;overflow-y:auto;scrollbar-gutter:stable; }
+.room-guide .table-item-list button { min-height:52px; }
+.room-guide .object-study small { white-space:nowrap; }
+.flat-setting svg { width:100%;height:100%; }
+.flat-setting .table-hotspot { width:30px;height:30px;min-width:30px;min-height:30px;font-size:12px; }
+.flat-setting { aspect-ratio:880/650;color:var(--burgundy); }
+.is-map .flat-setting>p { color:var(--muted); }
+.table-detail .object-citation { font-size:13px!important;line-height:1.5!important;margin-top:18px; }
+@media(min-width:901px) { .chapter-sidebar { top:calc(var(--frame-height,180px) + 24px); } }
+@media screen and (min-width:801px) {
+ .directory-gallery img { height:min(520px,calc(100svh - var(--frame-height,180px) - 140px));min-height:260px;aspect-ratio:auto; }
+ .dining-experience.is-seated { align-items:start;min-height:0; }
+ .is-seated .room-stage { position:sticky;top:var(--frame-height,180px);height:max(500px,calc(100svh - var(--frame-height,180px)));min-height:0; }
+ [data-story][data-enhanced='true'] .story-scroll { --story-height:calc(100svh - var(--frame-height,180px)); }
+ [data-story][data-enhanced='true'] .story-stage { top:var(--frame-height,180px); }
+}
+@media(max-width:900px) {
+ .site-wayfinding .journey-nav a { padding:10px 8px;gap:8px; }
+ .site-wayfinding .journey-nav strong { font-size:24px; }
+ .site-wayfinding .journey-nav small { font-size:13px; }
+ .carreno-feature { gap:32px; }
+}
+@media(max-width:580px) {
+ .site-wayfinding .journey-nav { padding:4px 12px 8px; }
+ .site-wayfinding .journey-nav ol { grid-template-columns:repeat(4,minmax(0,1fr));gap:2px; }
+ .site-wayfinding .journey-nav a { min-height:66px;display:block;text-align:center;padding:8px 2px; }
+ .site-wayfinding .journey-step { display:none; }
+ .site-wayfinding .journey-nav strong { display:block;font-size:23px; }
+ .site-wayfinding .journey-nav small { font-size:11px;line-height:1.2; }
+ .dining-hero:not(.is-seated) { min-height:620px; }
+ .directory-gallery { position:relative;top:auto; }
+ .directory-preview-note { min-height:3.3em;margin-top:16px; }
+ .directory-preview-note p { font-size:24px; }
+ .carreno-feature { grid-template-columns:1fr;padding-block:10px 48px; }
+ .carreno-book { width:100%;aspect-ratio:1.2;padding:28px; }
+ .carreno-book>span:nth-child(2) { font-size:44px; }
+ .historical-foundation { padding:24px; }
+ .room-guide .table-item-list { max-height:none;overflow:visible; }
+ .site-footer .footer-bottom { display:flex;flex-direction:column;align-items:flex-start;gap:14px; }
+}
+@media(max-height:500px) { .site-wayfinding { position:relative; } }
+@media print { .site-wayfinding { display:none; } }
+@media(prefers-reduced-motion:reduce) { .moment-questions details::details-content { transition:none; } }

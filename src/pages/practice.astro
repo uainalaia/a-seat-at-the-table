@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DinnerSimulator from '../components/DinnerSimulator';
+import { scenario } from '../data/learning';
+---
+<Layout title="The dinner experience" description="Practice six decisions at a fictional recruiting dinner, with immediate feedback and chapter recommendations.">
+  <section class="guide-masthead practice-masthead section-shell"><h1>The dinner<br/>rehearsal.</h1><div><p>A recruiter has invited you and two other students to dinner. Choose your next move as the evening unfolds.</p><p class="masthead-note">Six decisions. Room to learn from every one.</p></div></section>
+  <div class="section-shell simulator-page"><DinnerSimulator client:load /><noscript><p class="context-note">JavaScript is needed for the interactive simulation. You can still read every situation and its recommended approach below.</p></noscript><details class="reference-details"><summary>Read all six scenarios & recommended approaches</summary><ol class="scenario-transcript">{scenario.map((step) => <li><h2>{step.title}</h2><p>{step.scene}</p><p><strong>{step.question}</strong></p><ol type="A">{step.options.map((option) => <li>{option.text} {option.recommended && <strong>Recommended.</strong>}</li>)}</ol><p>{step.explanation}</p><a href={`/chapters/${step.chapter}/`}>Read the related chapter</a></li>)}</ol></details><p class="context-note">These scenarios are fictional learning exercises, not a hiring assessment. Read the <a href="/resources/">educational sources</a> behind the guidance.</p></div>
+</Layout>

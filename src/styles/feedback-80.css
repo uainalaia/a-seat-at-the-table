@@ -1,0 +1,50 @@
+/* Four requested refinements; the established editorial system stays in place. */
+.site-header .utility-nav { display:flex;align-items:center;margin-left:auto; }
+.utility-nav a { display:inline-flex;align-items:center;gap:14px;min-height:44px;font-family:var(--display);font-size:30px;line-height:1.1;color:var(--burgundy);text-decoration:none; }
+.utility-nav a:hover,.utility-nav a[aria-current] { text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:1px; }
+.utility-nav svg { width:18px;height:18px;flex-shrink:0; }
+.directory-preview-note { text-align:center; }
+.directory-preview-note p { margin-inline:auto; }
+.resource-introduction { padding-block:52px 48px;align-items:center;gap:60px; }
+.resource-introduction>p { max-width:39ch;margin:0;font-size:20px;line-height:1.6; }
+html:has(body[data-page='resources']) { scroll-padding-top:calc(var(--frame-height,180px) + 20px); }
+body[data-page='resources'] main,body[data-page='resources'] main [id] { scroll-margin-top:0; }
+.resource-collection { display:grid;grid-template-columns:190px minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:start; }
+.resource-index { display:block;position:sticky;top:calc(var(--frame-height,180px) + 28px);max-height:calc(100svh - var(--frame-height,180px) - 50px);overflow-y:auto; }
+.resource-index h2 { font-family:var(--display);font-size:29px;line-height:1.12;margin:0 0 24px; }
+.resource-index a { display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:58px;padding:13px 10px;margin:0 0 5px;font-family:var(--display);font-size:24px;line-height:1.15;text-decoration:none;color:var(--burgundy); }
+.resource-index a:hover { text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px; }
+.resource-index a[aria-current='location'] { background:var(--linen); }
+.resource-index .arrow-icon { width:18px;height:18px;flex-shrink:0; }
+.resource-collection-body { min-width:0; }
+.resource-collection-body .carreno-feature { gap:clamp(24px,4vw,60px);padding-block:0 65px; }
+.resource-collection-body .carreno-feature h2 { font-size:clamp(38px,3.4vw,50px); }
+.resource-collection-body .carreno-book { padding:32px; }
+.resource-collection-body .carreno-book>span:nth-child(2) { font-size:clamp(34px,3.3vw,48px); }
+.resource-collection-body .library-heading { gap:28px; }
+.resource-collection-body .resources-layout { gap:40px; }
+@media(max-width:1100px) {
+ .resource-introduction { gap:32px; }
+ .resource-collection { display:block; }
+ .resource-index { top:var(--frame-height,180px);z-index:30;max-height:none;background:var(--ivory);padding-block:10px;margin-bottom:28px;overflow:visible; }
+ .resource-index h2 { position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+ .resource-index nav { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px; }
+ .resource-index a { margin:0;font-size:22px;min-height:54px;padding:10px; }
+ html:has(body[data-page='resources']) { scroll-padding-top:calc(var(--frame-height,180px) + var(--resource-index-height,96px) + 20px); }
+}
+@media(max-width:580px) {
+ .utility-nav a { font-size:25px;gap:9px; }
+ .utility-nav svg { width:14px;height:14px; }
+ .resource-introduction { display:block;padding-block:32px; }
+ .resource-introduction h1 { margin-bottom:22px; }
+ .resource-introduction>p { font-size:18px;max-width:33ch; }
+ .resource-index nav { grid-template-columns:1fr 1fr;gap:4px 8px; }
+ .resource-index a { font-size:21px;min-height:46px;padding:9px; }
+ .resource-index .arrow-icon { width:16px;height:16px; }
+ .resource-collection-body .carreno-feature { padding-bottom:48px; }
+ .resource-collection-body .carreno-book { padding:28px; }
+ .resource-collection-body .carreno-book>span:nth-child(2) { font-size:44px; }
+ html:has(body[data-page='resources']) { scroll-padding-top:calc(var(--frame-height,150px) + var(--resource-index-height,164px) + 20px); }
+}
+@media(max-width:360px) { .utility-nav a { font-size:23px;gap:6px; } }
+@media print { .resource-index { display:none; }.resource-collection { display:block; } }

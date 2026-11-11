@@ -1,0 +1,24 @@
+---
+import Arrow from './Arrow.astro';
+const moments = [
+  { id: 'the-first-hello', name: 'Arrive', title: 'The first hello.', image: 'invitation', wide:'arrive', alt: 'An invitation with the cues confirm, prepare and arrive.', text: 'Confirm the details. Arrive prepared. The evening starts before you sit down.', href: '/chapters/before-you-arrive/', link: 'Before you arrive' },
+  { id: 'a-place-of-your-own', name: 'Settle in', title: 'A place of your own.', image: 'arrival-place', wide:'settle', alt: 'Your place card and setting, with bread on the left and water on the right.', text: 'Find your bread, water and first utensil. A little orientation lets you focus on the people.', href: '/table/', link: 'Explore the table' },
+  { id: 'room-for-conversation', name: 'Connect', title: 'Room for conversation.', image: 'conversation', wide:'connect', alt: 'A conversation prompt: What do you enjoy most about your work? Leave room for the answer.', text: 'Ask one thoughtful question. Listen to the answer. Make room for everyone at the table.', href: '/practice/', link: 'Rehearse the evening' },
+];
+---
+<section class="evening-journey" id="the-guide" aria-labelledby="journey-heading" data-story>
+  <header class="story-introduction section-shell"><h2 id="journey-heading">Your evening,<br/>step by step.</h2><a class="text-link" href="#chapter-heading">Skip to the chapters<Arrow/></a></header>
+  <div class="story-scroll">
+    <div class="story-stage" aria-hidden="true">
+      {moments.map((moment,index)=><img class="story-layer" data-story-image={index} src={`/images/study-story-${moment.wide}.svg`} sizes="100vw" alt="" width="1400" height="900" loading="lazy"/>)}
+      <div class="story-scrim"></div>
+      <div class="story-counter"><span data-story-count>01</span><span> / 03</span></div>
+    </div>
+    <div class="story-chapters">
+      {moments.map((moment, index) => <article class="story-chapter" id={moment.id} data-story-chapter={index}>
+        <figure class="story-static-image"><img src={`/images/study-${moment.image}.svg`} alt={moment.alt} width="600" height="600" loading="lazy"/></figure>
+        <div class="story-copy"><h3>{moment.title}</h3><p>{moment.text}</p><a class="story-link" href={moment.href}>{moment.link}<Arrow/></a></div>
+      </article>)}
+    </div>
+  </div>
+</section>

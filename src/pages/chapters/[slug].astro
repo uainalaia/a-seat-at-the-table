@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import { carreno, chapterFoundations } from '../../data/carreno';
+import type { ChapterSlug } from '../../data/learning';
+import Layout from '../../layouts/Layout.astro';
+import Arrow from '../../components/Arrow.astro';
+import { getResource } from '../../data/resources';
+import { chapterVisuals } from '../../data/chapter-visuals';
+export async function getStaticPaths() {
+  const chapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
+  return chapters.map((chapter, index) => ({ params: { slug: chapter.id }, props: { chapter, previous: chapters[index - 1], next: chapters[index + 1] } }));
+}
+const { chapter, previous, next } = Astro.props;
+const { Content, headings } = await render(chapter);
+const visual = chapterVisuals[chapter.id];
+---
+<Layout title={chapter.data.title} description={chapter.data.description}>
+  <header class="chapter-cover section-shell">
+    <div class="chapter-cover-copy"><a class="chapter-back text-link" href="/chapters/"><Arrow direction="left"/>The six chapters</a><h1>{chapter.data.title}</h1><p>{chapter.data.description}</p><div class="chapter-meta"><span>Chapter {chapter.data.order} of 6</span><span>{chapter.data.minutes} minute read</span></div></div>
+    <figure><img src={`/images/${visual.image}.svg`} alt={visual.alt} width="600" height="740" fetchpriority="high"/><figcaption>{visual.caption}</figcaption></figure>
+  </header>
+  <div class="chapter-layout section-shell">
+    <aside class="chapter-sidebar"><details class="chapter-contents" open><summary>In this chapter</summary><nav aria-label="On this page">{headings.filter(item => item.depth === 2).map(item => <a href={`#${item.slug}`}>{item.text}</a>)}<a href="#chapter-takeaway">Take it with you</a></nav></details><nav class="chapter-tools" aria-label="Learning tools"><a href="/table/">Explore the table<Arrow/></a><a href="/practice/">Practice a dinner<Arrow/></a><a href="/reflection/">Reflect on your learning<Arrow/></a></nav></aside>
+    <article class="chapter-article"><p class="learning-objective"><strong>What you’ll learn</strong>{chapter.data.objective}</p><div class="prose"><Content/></div><section class="historical-foundation" id="historical-foundation"><h2>From Carreño to your table.</h2><p>{chapterFoundations[chapter.id as ChapterSlug].principle}</p><p><strong>In practice today:</strong> {chapterFoundations[chapter.id as ChapterSlug].application}</p><p class="learning-source"><a href={carreno.url}>Carreño · {chapterFoundations[chapter.id as ChapterSlug].locator}</a> · 2016 digital edition. Original English synthesis; see <a href="/resources/#carreno">edition and historical context</a>.</p></section><div class="chapter-takeaway" id="chapter-takeaway"><span>Take it with you</span><p>{chapter.data.takeaway}</p></div><section class="chapter-sources" aria-label="Chapter references"><h2>Keep exploring.</h2><ul>{chapter.data.sourceIds.map((id) => {const resource = getResource(id); return <li><a href={resource.url}>{resource.title}</a><span>{resource.organization}</span></li>;})}</ul><a href="/resources/">Full references & source notes</a></section><nav class="chapter-pagination" aria-label="Chapter navigation">{previous ? <a href={`/chapters/${previous.id}/`}><span>Previous chapter</span><strong>{previous.data.title}</strong><Arrow direction="left"/></a> : <a href="/chapters/"><span>Your learning journey</span><strong>All six chapters</strong><Arrow direction="left"/></a>}{next ? <a href={`/chapters/${next.id}/`}><span>Next chapter</span><strong>{next.data.title}</strong><Arrow/></a> : <a href="/practice/"><span>Put it into practice</span><strong>The dinner experience</strong><Arrow/></a>}</nav></article>
+  </div>
+</Layout>

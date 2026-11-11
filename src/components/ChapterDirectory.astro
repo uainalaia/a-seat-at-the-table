@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import { chapterVisuals } from '../data/chapter-visuals';
+import Arrow from './Arrow.astro';
+const chapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
+const { headingLevel = 3 } = Astro.props;
+const Heading = headingLevel === 2 ? 'h2' : 'h3';
+---
+<chapter-directory class="chapter-directory">
+  <div class="directory-gallery" aria-hidden="true">
+    {chapters.map((chapter, index) => <figure data-preview={chapter.id} class:list={{ 'is-active': index === 0 }}><img src={`/images/${chapterVisuals[chapter.id].image}.svg`} alt="" width="600" height="600" loading="eager"/></figure>)}
+    <div class="directory-preview-note">{chapters.map((chapter,index)=><p data-preview-note={chapter.id} hidden={index!==0}>{chapter.data.description}</p>)}</div>
+  </div>
+  <ol class="directory-list">{chapters.map(chapter => <li><a href={`/chapters/${chapter.id}/`} data-chapter={chapter.id} aria-describedby={`chapter-summary-${chapter.id}`}><span class="directory-order">{String(chapter.data.order).padStart(2, '0')}</span><span class="directory-copy"><Heading>{chapter.data.title}</Heading><small>{chapter.data.minutes} min</small></span><Arrow/></a><span class="sr-only" id={`chapter-summary-${chapter.id}`}>{chapter.data.description}</span></li>)}</ol>
+</chapter-directory>
+<script>
+  class ChapterDirectory extends HTMLElement {
+    connectedCallback() {
+      const activate = (event: Event) => {
+        const link = (event.target as Element).closest<HTMLAnchorElement>('a[data-chapter]');
+        if (!link) return;
+        this.querySelectorAll<HTMLElement>('[data-preview-note]').forEach(note => { note.hidden = note.dataset.previewNote !== link.dataset.chapter; });
+        this.querySelectorAll<HTMLElement>('[data-preview]').forEach(figure => figure.classList.toggle('is-active', figure.dataset.preview === link.dataset.chapter));
+      };
+      this.addEventListener('pointerover', activate);
+      this.addEventListener('focusin', activate);
+    }
+  }
+  if (!customElements.get('chapter-directory')) customElements.define('chapter-directory', ChapterDirectory);
+</script>

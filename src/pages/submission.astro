@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="HW4 submission form" description="A printable Business Dining Etiquette Website submission form with links, graphics, and advanced features documented.">
+  <section class="page-heading section-shell"><h1>Homework #4<br /><em>Submission form.</em></h1><p>Business Dining Etiquette Website</p></section>
+  <div class="section-shell submission-page" data-print-ready="false">
+    <p class="submission-help">Review the website URL after publication. Confirm that your instructor can open it without signing in, then print or save this form as a PDF for D2L. Your entries are not collected by this site.</p>
+    <p class="print-pending">Publication pending. Enter a public HTTPS website address before printing the completed submission form.</p>
+    <div class="submission-form">
+      <label>Your name<input id="student-name" name="student-name" type="text" value="Omar Quispe Avalos" autocomplete="name" /><span class="submission-print-value" aria-hidden="true">Omar Quispe Avalos</span></label>
+      <label>Your website’s URL<input id="website-url" name="website-url" type="url" autocomplete="url" required spellcheck="false" aria-describedby="url-help" placeholder="https://your-site.vercel.app" /><span class="submission-print-value" aria-hidden="true">Publication pending</span></label>
+      <p id="url-help" class="input-hint submission-url-help">Publication pending. Enter the final public HTTPS address before printing.</p>
+      <p id="url-error" class="submission-url-error" role="alert" hidden>Enter a public HTTPS website address. Local preview addresses cannot be submitted.</p>
+      <label>Preferred browser (if any)<input name="preferred-browser" type="text" autocomplete="off" value="Current Microsoft Edge or Brave" /><span class="submission-print-value" aria-hidden="true">Current Microsoft Edge or Brave</span></label>
+      <label>Describe your internal and external links<textarea name="link-description" rows="4">Internal links connect six chapters, the interactive table, dinner simulator, survey, and references. External sources include Carreño (Biblioteca Nacional de Colombia), Emily Post, TCU, Virginia Tech, Western Michigan University, and University of Arizona Career Development.</textarea><span class="submission-print-value" aria-hidden="true"></span></label>
+      <label>Describe your graphic element(s)<textarea name="graphic-description" rows="3">An original 3D dining room models 17 selectable table elements, with an illustrated 3D renderer and a 2D map as alternatives. Original instructional graphics accompany the chapters and simulator. The opening AI-generated dining-room illustration is disclosed on the Resources page.</textarea><span class="submission-print-value" aria-hidden="true"></span></label>
+      <label>Describe your advanced feature(s)<textarea name="advanced-description" rows="4">The 3D table uses a guided camera and selectable objects with explanations. The recruiting-dinner simulator offers six decisions, consequences, and a final review. A local ten-question survey includes six comprehension questions with feedback, two confidence questions, and two open reflections.</textarea><span class="submission-print-value" aria-hidden="true"></span></label>
+    </div>
+    <div class="print-actions"><button id="print-submission" class="button" type="button">Print / save as PDF</button></div>
+    <p class="submission-help">The assignment documents do not state the current due date. Check D2L for the deadline and required submission format.</p>
+    <noscript><p class="submission-help">Printing the completed form requires JavaScript to validate the published address and include your current entries.</p></noscript>
+  </div>
+  <script>
+    import { isPublicHttpsUrl } from '../lib/submission';
+
+    const input = document.querySelector<HTMLInputElement>('#website-url')!;
+    const container = document.querySelector<HTMLElement>('.submission-page')!;
+    const error = document.querySelector<HTMLElement>('#url-error')!;
+    const help = document.querySelector<HTMLElement>('#url-help')!;
+    let validationRequested = false;
+
+    function updatePrintValues() {
+      document.querySelectorAll('.submission-form label').forEach((label) => {
+        const field = label.querySelector<HTMLInputElement | HTMLTextAreaElement>('input, textarea');
+        const printed = label.querySelector<HTMLElement>('.submission-print-value');
+        if (field && printed) printed.textContent = field.value.trim() || 'Not specified';
+      });
+    }
+
+    function validateAddress() {
+      const valid = isPublicHttpsUrl(input.value);
+      const showError = validationRequested && !valid;
+      container.dataset.printReady = String(valid);
+      error.hidden = !showError;
+      input.setAttribute('aria-describedby', showError ? 'url-help url-error' : 'url-help');
+      if (showError) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+      help.textContent = valid
+        ? 'Before submitting, confirm this address opens in a private browser window without signing in.'
+        : 'Publication pending. Enter the final public HTTPS address before printing.';
+      return valid;
+    }
+
+    if (isPublicHttpsUrl(window.location.origin)) input.value = window.location.origin + '/';
+    validateAddress();
+    updatePrintValues();
+    container.addEventListener('input', () => { validateAddress(); updatePrintValues(); });
+    window.addEventListener('beforeprint', () => {
+      validationRequested = true;
+      validateAddress();
+      updatePrintValues();
+    });
+    document.querySelector('#print-submission')?.addEventListener('click', () => {
+      validationRequested = true;
+      if (!validateAddress()) { input.focus(); return; }
+      updatePrintValues();
+      window.print();
+    });
+  </script>
+  <style>
+    .submission-print-value, .print-pending { display: none; }
+    .submission-url-help { margin-top: -16px; margin-bottom: 25px; }
+    .submission-url-error { color: var(--burgundy); font-size: 16px; margin: -10px 0 25px; }
+    @media print {
+      @page { size: A4; margin: 12mm; }
+      :global(html:root), :global(body) { background: white; }
+      :global(.page-heading) { padding: 0 0 10px; }
+      :global(.page-heading h1) { font-size: 26pt; margin: 0 0 8px; }
+      :global(.page-heading > p) { color: black; font-size: 11pt; }
+      .submission-page { padding: 8px 0 0; }
+      .submission-form { margin-top: 12px; }
+      .submission-form label { margin: 0 0 13px; font-size: 10.5pt; line-height: 1.35; }
+      .submission-form input, .submission-form textarea, .submission-url-help, .submission-url-error { display: none !important; }
+      .submission-print-value { display: block; margin-top: 4px; padding: 5px 0; border-bottom: 1px solid #aaa; color: black; font-size: 10.5pt; font-weight: 400; line-height: 1.35; white-space: pre-wrap; overflow-wrap: anywhere; }
+      .submission-page[data-print-ready='false'] .submission-form { display: none; }
+      .submission-page[data-print-ready='false'] .print-pending { display: block; margin: 18px 0; color: black; }
+    }
+  </style>
+</Layout>

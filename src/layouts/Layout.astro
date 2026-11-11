@@ -1,0 +1,54 @@
+---
+import '@fontsource/cormorant-garamond/latin-400.css';
+import '@fontsource/cormorant-garamond/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-400-italic.css';
+import '@fontsource/source-sans-3/latin-400.css';
+import '@fontsource/source-sans-3/latin-600.css';
+import '../styles/global.css';
+import '../styles/editorial.css';
+import '../styles/field-guide.css';
+import '../styles/cinematic.css';
+import '../styles/refinements.css';
+import '../styles/illustrated-system.css';
+import '../styles/coherence.css';
+import PlaceMark from '../components/PlaceMark.astro';
+import JourneyNav from '../components/JourneyNav.astro';
+import '../styles/feedback-70.css';
+import '../styles/feedback-80.css';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const path = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#641D2C" />
+    <title>{title === 'A Seat at the Table' ? title : `${title} · A Seat at the Table`}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body data-page={path === "/" ? "home" : path.split("/")[1]}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-wayfinding"><header class="site-header">
+      <a class="brand" href="/" aria-label="A Seat at the Table home"><PlaceMark /><span>A Seat at the Table</span></a>
+      <nav class="utility-nav" aria-label="Reference library"><a href="/resources/" aria-current={path.startsWith('/resources/')?'page':undefined}>Resources<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 16 16 4M4 4h12v12" stroke="currentColor" stroke-width="1.2"/></svg></a></nav>
+    </header><JourneyNav current={path.startsWith("/chapters/")?"Read":path.startsWith("/table/")?"Explore":path.startsWith("/practice/")?"Practice":path.startsWith("/reflection/")?"Reflect":undefined}/></div>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer">
+      <div class="footer-bottom"><a class="footer-signature" href="/" aria-label="A Seat at the Table home"><PlaceMark/><span>A Seat at the Table</span></a><p>An independent project for Arizona students.</p><a href="/resources/">Sources & image credits</a></div>
+    </footer>
+    <script>
+      import '../lib/editorial-motion';
+      const wayfinding = document.querySelector<HTMLElement>('.site-wayfinding');
+      if (wayfinding) new ResizeObserver(([entry]) => {
+        document.documentElement.style.setProperty('--frame-height', `${entry.borderBoxSize[0]?.blockSize ?? entry.contentRect.height}px`);
+      }).observe(wayfinding);
+    </script>
+  </body>
+</html>

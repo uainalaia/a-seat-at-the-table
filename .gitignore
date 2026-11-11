@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env*
+!.env.example
+test-results/
+.qa/
+
+.taste-skill/
+.impeccable/
+.DS_Store
+Thumbs.db
+*.log

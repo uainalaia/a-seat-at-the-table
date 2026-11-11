@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Arrow from '../components/Arrow.astro';
+import DiningExperience from '../components/DiningExperience';
+import ChapterDirectory from '../components/ChapterDirectory.astro';
+import EveningJourney from '../components/EveningJourney.astro';
+---
+<Layout title="A Seat at the Table" description="An interactive field guide to business dining for University of Arizona students. Read, explore the table, rehearse a dinner, and find your confidence.">
+  <DiningExperience hero client:load />
+
+  <EveningJourney />
+  <section class="field-guide section-shell" aria-labelledby="chapter-heading">
+    <div class="spread-heading"><h2 id="chapter-heading">Six chapters.<br/>Your own pace.</h2><a class="text-link" href="/chapters/">All chapters<Arrow/></a></div>
+    <ChapterDirectory />
+  </section>
+  <section class="moment-section section-shell" aria-labelledby="moment-heading">
+    <div><h2 id="moment-heading">One moment.<br/>A better instinct.</h2><p>Three small situations. Open one to see a considerate response.</p><a class="text-link" href="/practice/">Try the full dinner<Arrow/></a></div>
+    <div class="moment-questions">
+      <details name="dining-moment"><summary><span>Your fork falls to the floor.<small class="moment-reveal">Reveal a response</small></span><Arrow/></summary><div><p>Leave it there and quietly ask the server for a clean one. A small accident needs only a small response.</p><a href="/chapters/conversation-and-courtesy/">Practice a gracious recovery</a></div></details>
+      <details name="dining-moment"><summary><span>One guest has not spoken yet.<small class="moment-reveal">Reveal a response</small></span><Arrow/></summary><div><p>Make space: “What has your experience been?” Then give them time to answer.</p><p class="learning-source"><a href="/resources/#carreno">Carreño · ch. V, art. I, §§ II, V, XXXIV–XXXV</a></p><a href="/chapters/conversation-and-courtesy/">Learn to include the table</a></div></details>
+      <details name="dining-moment"><summary><span>You cannot eat an ingredient.<small class="moment-reveal">Reveal a response</small></span><Arrow/></summary><div><p>Tell the host in advance and confirm with the server. Being considerate includes communicating what you need.</p><a href="/chapters/ordering-with-confidence/">Order with confidence</a></div></details>
+    </div>
+  </section>
+</Layout>

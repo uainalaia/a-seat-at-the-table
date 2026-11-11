@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LearningSurvey from '../components/LearningSurvey';
+---
+<Layout title="Your reflection" description="Ten learning questions to reflect on business dining, check your understanding, and identify your next step.">
+  <section class="guide-masthead section-shell"><h1>Make it<br/>second nature.</h1><div><p>Notice what you learned, what feels easier, and what you would like to practice next.</p><p class="masthead-note">Six knowledge questions. Four personal reflections.</p></div></section>
+  <div class="section-shell survey-page"><LearningSurvey client:load/><noscript><style is:global>.survey-actions{display:none!important}</style></noscript></div>
+
+</Layout>

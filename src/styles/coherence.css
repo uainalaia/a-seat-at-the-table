@@ -1,0 +1,100 @@
+/* Feedback 5.7: one grid, one closing surface, and a connected editorial sequence. */
+@media screen {
+  .dining-hero { max-width:none;width:auto;margin-inline:24px; }
+  .site-footer { background:var(--salon);color:var(--ivory);padding-block:56px 26px; }
+  .footer-invitation h2 { font-size:clamp(42px,4.6vw,64px);line-height:1.06; }
+  .footer-invitation h2 em { color:#d6ba87; }
+  .footer-invitation .text-link { color:var(--ivory);padding:15px 24px;border:1px solid #d6ba8766;min-height:54px; }
+  .footer-invitation .text-link:hover { background:var(--ivory);color:var(--salon);text-decoration:none; }
+  .footer-journey { border-color:#d6ba8740; }
+  .footer-bottom { color:var(--salon-muted); }
+  .footer-bottom>a { color:var(--salon-muted); }
+  .journey-nav { display:block;padding-block:22px; }
+  .journey-nav ol { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin:0;padding:0;list-style:none; }
+  .journey-nav a { display:flex;align-items:center;gap:14px;text-decoration:none;min-height:70px;padding:12px 14px;color:var(--charcoal);transition:background-color 160ms ease-out; }
+  .journey-nav a:hover,.journey-nav a[aria-current] { background:var(--linen); }
+  .journey-nav a[aria-current] strong { color:var(--burgundy); }
+  .journey-nav .journey-step { font-family:var(--display);font-size:22px;color:var(--burgundy);align-self:start;line-height:1.3; }
+  .journey-label { flex:1;min-width:0; }
+  .journey-nav strong { font-size:30px;line-height:1; }
+  .journey-nav small { font-size:14px;margin-top:7px;color:var(--muted); }
+  .journey-nav svg { width:18px;height:18px; }
+  .story-introduction { display:flex;align-items:end;justify-content:space-between;gap:32px;padding-block:40px 38px; }
+  .story-introduction h2 { margin:0;font-size:clamp(40px,4vw,56px);max-width:18ch;line-height:1.05; }
+  .story-introduction .text-link { min-height:44px;flex-shrink:0; }
+  .story-scroll { background:var(--salon); }
+  .story-stage { background:var(--salon); }
+  .story-layer { object-fit:contain;object-position:center!important; }
+  .story-copy h3 { font-size:clamp(44px,4.6vw,68px);max-width:14ch;line-height:1.05; }
+  .story-copy>p { font-size:clamp(18px,1.5vw,22px);line-height:1.55;max-width:32ch;margin-bottom:26px; }
+  .story-static-image { background:var(--salon); }
+  .story-static-image img { object-fit:contain; }
+  .story-chapter:nth-child(2) { background:var(--salon);color:var(--ivory); }
+  .story-chapter:nth-child(2) .story-copy>p { color:#eadbd0; }
+  .story-chapter:nth-child(2) .story-copy :focus-visible { outline-color:var(--ivory); }
+  .story-chapter:nth-child(2) .story-link:hover { color:var(--ivory); }
+  .evening-journey~.field-guide { padding-top:80px; }
+  .spread-heading { gap:30px;align-items:end;margin-bottom:38px; }
+  .spread-heading h2 { font-size:clamp(44px,4.5vw,64px); }
+  .spread-heading>.text-link { flex-shrink:0;min-height:44px; }
+  .chapter-directory { grid-template-columns:minmax(0,.92fr) minmax(0,1.12fr);gap:clamp(35px,6vw,90px); }
+  .directory-gallery img { height:auto;aspect-ratio:1;min-height:0; }
+  .directory-gallery figcaption { font-family:var(--body);font-size:16px;line-height:1.5;margin-top:16px;max-width:36ch; }
+  .directory-list a { min-height:105px;padding:23px 14px;align-items:center;gap:18px; }
+  .directory-list li:first-child a { padding-top:23px; }
+  .directory-copy { display:flex;align-items:baseline;gap:18px;justify-content:space-between; }
+  .directory-copy h2,.directory-copy h3 { font-size:31px;margin:0;line-height:1.1; }
+  .directory-copy small { margin:0;font-size:14px;white-space:nowrap; }
+  .directory-order { font-size:23px;min-width:25px; }
+  .directory-list .arrow-icon { margin:0; }
+  .watch-grid { row-gap:52px; }
+  .watch-lesson[data-tone='light'] .lesson-art { background:var(--linen);color:var(--burgundy); }
+  .watch-lesson[data-tone='light'] .lesson-play { color:var(--burgundy); }
+  .watch-lesson[data-tone='dark'] .lesson-art { background:var(--salon);color:#d6ba87; }
+  .watch-lesson[data-tone='dark'] .lesson-play { color:var(--ivory); }
+}
+@media screen and (min-width:900px) {
+  [data-story][data-enhanced='true'] .story-copy { width:50%;max-width:none;padding-left:max(var(--gutter),calc((100vw - 1440px)/2 + var(--gutter)));padding-right:35px; }
+  [data-story][data-enhanced='true'] .story-copy h3 { font-size:clamp(48px,4.6vw,68px); }
+}
+@media screen and (min-width:1800px) {
+  .dining-hero { margin-inline:24px; }
+}
+@media screen and (max-width:900px) {
+  .journey-nav ol { gap:6px; }
+  .journey-nav a { padding:10px 6px;gap:10px; }
+  .journey-nav .journey-step { font-size:19px; }
+  .journey-nav strong { font-size:26px; }
+  .journey-nav svg { display:none; }
+  .chapter-directory { gap:32px; }
+  .directory-copy { display:block; }
+  .directory-copy h2,.directory-copy h3 { font-size:29px; }
+  .directory-copy small { margin-top:8px; }
+}
+@media screen and (max-width:580px) {
+  .dining-hero { margin-inline:12px; }
+  .journey-nav { padding-block:18px; }
+  .journey-nav ol { grid-template-columns:1fr 1fr;gap:4px 16px; }
+  .journey-nav a { padding:13px 6px;min-height:74px; }
+  .journey-nav strong { font-size:28px; }
+  .journey-nav small { font-size:14px; }
+  .story-introduction { display:block;padding-block:25px 30px; }
+  .story-introduction h2 { font-size:42px;margin-bottom:16px; }
+  .story-copy { padding:24px 24px 40px; }
+  .story-copy h3 { font-size:44px;margin-bottom:20px; }
+  .story-copy>p { font-size:19px; }
+  .story-static-image { aspect-ratio:1.2; }
+  .evening-journey~.field-guide { padding-top:55px; }
+  .spread-heading h2 { font-size:43px; }
+  .spread-heading { gap:14px; }
+  .directory-list a { min-height:92px;padding-block:20px; }
+  .chapter-directory { grid-template-columns:1fr;gap:24px; }
+  .directory-gallery { width:100%;position:relative;top:auto; }
+  .directory-gallery img { height:240px;aspect-ratio:auto;object-fit:contain; }
+  .directory-list li:first-child a { padding-top:20px; }
+  .directory-copy h2,.directory-copy h3 { font-size:28px; }
+  .directory-gallery figcaption { font-size:16px;margin-top:13px; }
+  .site-footer { padding-block:42px 24px; }
+  .footer-invitation h2 { font-size:39px; }
+  .footer-invitation .text-link { margin-top:8px;padding:13px 20px; }
+}

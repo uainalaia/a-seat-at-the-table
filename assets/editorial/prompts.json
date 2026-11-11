@@ -1,0 +1,26 @@
+{
+  "tool": "Built-in image_gen; no CLI/API fallback or Higgsfield generation",
+  "date": "2026-11-04",
+  "assets": [
+    {
+      "key": "journey-room-image",
+      "source": "assets/editorial/room-source.png",
+      "web": "public/images/editorial-room.webp",
+      "prompt": "Create one cinematic editorial photograph for the homepage of A Seat at the Table, an English-language business dining learning experience. Landscape 16:9, high-resolution photographic realism, sophisticated hospitality magazine art direction. An intimate contemporary dining salon viewed from a doorway at blue hour: deep burgundy velvet seating, warm ivory linen on a table prepared for a small professional dinner, fine porcelain, polished silver, simple water glasses, a few restrained candle flames and soft amber brass lighting. No people in this shot. Honest tactile linen folds, natural reflections, realistic depth, atmospheric soft shadows, 50mm editorial lens, warm film color with charcoal blacks and subdued wine tones, beautiful controlled highlights. Composition: dining table is the dominant sculptural foreground with its near end toward lower right; the left third has darker quiet wall/curtain negative space suitable for ivory website lettering added later; no lettering is inside the photo. A sophisticated inviting lived-in room, absolutely not a CGI render, not a generic banquet hall, not wedding decor. No alcohol bottles, no logos, no text, no watermark, no collage. Illustrative setting, not a claim to depict a real university or actual venue."
+    },
+    {
+      "key": "journey-setting-image",
+      "prompt": "Create a NEW editorial still-life photograph in the same visual world as the reference dining room. This is a separate close-up photograph, not a crop of the reference. Landscape 3:2, photographic realism, warm restrained film color, deep burgundy and ivory, finely observed linen and silver. At a student's place at the professional dinner, focus tightly on one cream porcelain plate with a narrow elegant rim, a naturally folded ivory napkin, two graceful silver forks to the LEFT of the plate (smaller outer salad fork, larger inner dinner fork), and part of a water glass softly out of focus above and to the RIGHT. Only part of the place setting is in frame: the napkin, plate edge and forks are beautifully tactile, the room becomes warm soft bokeh and burgundy velvet at the upper edge. No food, no wine, no people, no logos, no letters, no watermark. Use actual camera-like shallow depth, optically believable silver reflections, detailed fabric fibers, editorial product photography quality. Not CGI or a plastic rendering. The image is an atmospheric illustration for A Seat at the Table; the separately authored interactive diagram supplies exact teaching positions.",
+      "source": "assets/editorial/setting-source.png",
+      "web": "public/images/editorial-setting.webp",
+      "reference": "assets/editorial/room-source.png"
+    },
+    {
+      "key": "journey-company-image",
+      "prompt": "Create a NEW cinematic editorial lifestyle photograph in the same burgundy-and-ivory dining salon visual world as the supplied reference. A candid respectful professional recruiting dinner with THREE ADULTS: two university-age adults in their early twenties and a professional host in their thirties, diverse appearances, modern understated business casual clothing in charcoal, navy and neutral tones. They are listening to one another, one speaking with a small natural open-hand gesture, relaxed genuine expressions rather than stock-photo grins. The camera sits at table height across an ivory linen table, porcelain plates, water glasses and restrained warm candlelight. Medium-wide composition with a burgundy velvet chair or curtain at the left edge as foreground depth, people in the middle/right, natural believable human anatomy, photorealistic editorial photography, warm film light and gentle optical grain. Elegant and inviting, not stiff, not a wedding, not luxurious costuming, not a handshake pose, not a board meeting. No university logos, no alcohol bottles, no text, no watermark. Landscape 16:9. This is an illustrative fictional scene; do not imply an actual university event or real identifiable people.",
+      "source": "assets/editorial/company-source.png",
+      "web": "public/images/editorial-company.webp",
+      "reference": "assets/editorial/room-source.png"
+    }
+  ]
+}

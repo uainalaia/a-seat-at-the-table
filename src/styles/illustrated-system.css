@@ -1,0 +1,65 @@
+/* The approved watch-lesson studies are the reference, not a new visual theme. */
+@media screen {
+  .room-canvas>.vector-room { display:block;width:100%;height:100%;touch-action:pan-y; }
+  .room-loading { position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:var(--salon);color:var(--salon-muted); }
+  .room-loading .table-object-icon { width:150px;height:150px;color:var(--gold); }
+  .room-recovery { margin-top:14px;padding-top:15px;border-top:1px solid var(--line); }
+  .room-recovery p { font-size:13px;line-height:1.5;margin-bottom:8px; }
+  .room-recovery>button { background:transparent;color:var(--burgundy);padding:8px 0;min-height:44px;border:0;text-decoration:underline;text-underline-offset:4px; }
+  .room-recovery summary { font-size:13px;cursor:pointer;min-height:32px;padding-block:5px; }
+  .room-recovery details p { overflow-wrap:anywhere;color:var(--muted); }
+  .directory-gallery img,.chapter-cover figure img { object-fit:contain;background:var(--linen); }
+  .directory-gallery img { min-height:400px; }
+  .chapter-cover figure img { height:auto;aspect-ratio:1; }
+  .story-static-image { min-height:0;min-width:0;width:100%;height:auto;aspect-ratio:1; }
+  .story-static-image img { object-fit:contain; }
+  .story-copy { padding-block:45px; }
+  .story-copy h3 { font-size:clamp(42px,4.5vw,64px); }
+  .story-copy>p { font-size:18px; }
+  .story-introduction { display:grid;grid-template-columns:1fr 1fr;gap:64px; }
+  .story-introduction h2 { max-width:14ch;font-size:clamp(44px,5vw,64px); }
+  .story-scrim { background:none; }
+  .story-layer { object-fit:cover;object-position:center!important; }
+  .moment-section { padding-block:80px;align-items:start; }
+  .moment-section>div:first-child { position:sticky;top:120px; }
+  .moment-section h2 { font-size:clamp(42px,4.5vw,64px); }
+  .rehearsal-invitation figure { min-height:0; }
+  .rehearsal-invitation figure img { object-fit:contain;max-height:600px; }
+  .rehearsal-copy h2 { font-size:clamp(46px,5vw,64px); }
+  .dinner-itinerary { background:var(--salon);padding-top:24px; }
+  .dinner-scene-still { position:relative;inset:auto;z-index:auto;height:210px;margin:0 0 24px; }
+  .dinner-scene-still img { opacity:1;object-fit:contain; }
+  .footer-invitation { display:block; }
+  .footer-invitation>div { display:flex;align-items:end;justify-content:space-between;gap:40px; }
+  .footer-invitation h2 { margin:0; }
+  .footer-invitation .text-link { margin-bottom:4px; }
+  .footer-bottom p,.footer-bottom>a:not(.footer-signature) { font-size:14px; }
+}
+@media screen and (min-width:900px) {
+  [data-story][data-enhanced='true'] .story-copy { width:46%;max-width:650px; }
+  [data-story][data-enhanced='true'] .story-copy h3 { font-size:clamp(48px,5vw,68px); }
+}
+@media screen and (max-width:800px) {
+  .story-introduction { display:block;padding-block:55px 35px; }
+  .story-introduction h2 { margin-bottom:24px; }
+  .directory-gallery img { min-height:0; }
+  .dinner-itinerary { display:grid;grid-template-columns:1fr 130px;gap:15px 25px;min-height:0; }
+  .dinner-itinerary .dinner-scene-still { grid-column:2;grid-row:1/3;width:130px;height:130px;margin:0; }
+  .dinner-itinerary h2 { margin:0;align-self:center; }
+  .dinner-itinerary ol { grid-column:1;align-self:start; }
+  .moment-section>div:first-child { position:static; }
+}
+@media screen and (max-width:580px) {
+  .story-copy { padding:34px 24px 42px; }
+  .story-static-image { min-height:0;height:auto;aspect-ratio:1.15; }
+  .story-static-image img { min-height:0; }
+  .rehearsal-invitation figure { max-height:360px; }
+  .rehearsal-invitation figure img { max-height:360px; }
+  .moment-section { padding-block:55px; }
+  .dinner-itinerary { grid-template-columns:1fr 100px;padding:20px;gap:12px 16px; }
+  .dinner-itinerary .dinner-scene-still { width:100px;height:100px; }
+  .dinner-itinerary li>span { width:24px;height:24px;font-size:12px; }
+  .dinner-itinerary ol { gap:4px; }
+  .footer-invitation>div { display:block; }
+  .footer-invitation h2 { margin-bottom:18px; }
+}

@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TableExplorer from '../components/TableExplorer';
+import { tableItems } from '../data/learning';
+---
+<Layout title="The table" description="Explore a three-dimensional dining room and expanded seventeen-piece reference setting. Learn how to find your bread plate, choose a fork, and use your napkin.">
+  <section class="table-introduction section-shell"><h1>Dinner,<br/><em>demystified.</em></h1><p>Pull up a chair. Select a utensil to get a closer look, or use the guide to find your way around.</p><a class="text-link" href="#complete-guide">Prefer to read? The complete guide is below.</a></section>
+  <TableExplorer client:load />
+  <section class="section-shell table-page"><p class="context-note">An expanded reference setting: soup, salad, fish, a main course, dessert and coffee. All 17 pieces are shown together for study. Real settings follow the menu; dessert and coffee service often arrive later. Wine glasses are included for recognition, with no expectation to drink alcohol.</p><details id="complete-guide" class="reference-details"><summary>Read the complete table guide</summary><dl>{tableItems.map((item) => <div><dt>{item.name} · {item.position}</dt><dd>{item.explanation} {item.tip}</dd></div>)}</dl></details><div class="page-end-links"><a href="/chapters/reading-the-table/">Read the chapter on place settings</a><a href="/resources/#formal">Setting: The Emily Post Institute</a><a href="/resources/#carreno">Dining principles: Carreño, ch. V, art. III</a></div></section>
+</Layout>

@@ -1,0 +1,13 @@
+---
+import { tableItems } from '../data/learning';
+const { current } = Astro.props;
+const stages = [
+  { href: '/chapters/', name: 'Read', detail: '6 chapters' },
+  { href: '/table/', name: 'Explore', detail: `${tableItems.length} objects` },
+  { href: '/practice/', name: 'Practice', detail: '6 decisions' },
+  { href: '/reflection/', name: 'Reflect', detail: 'Your learning' },
+];
+---
+<nav class="journey-nav" aria-label="Your learning journey">
+  <ol>{stages.map((stage,index)=><li><a href={stage.href} aria-current={current===stage.name?'step':undefined}><span class="journey-step" aria-hidden="true">{String(index+1).padStart(2,'0')}</span><span class="journey-label"><strong>{stage.name}</strong><small>{stage.detail}</small></span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h13M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.2"/></svg></a></li>)}</ol>
+</nav>

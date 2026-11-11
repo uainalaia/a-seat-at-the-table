@@ -1,0 +1,29 @@
+---
+import TableObjectIcon from './TableObjectIcon';
+import Arrow from './Arrow.astro';
+interface Props { title:string; icon:string; videoId:string; sourceUrl:string; note:string; chapter:string; tone?:'dark'|'light'; }
+const {title,icon,videoId,sourceUrl,note,chapter,tone='dark'}=Astro.props;
+---
+<article class={`watch-lesson lesson-${icon}`} data-tone={tone}>
+  <details class="video-lesson" name="video-lessons" data-lesson-title={title}>
+    <summary aria-label={`Play lesson: ${title}`}>
+      <span class="lesson-art"><TableObjectIcon id={icon}/><span class="lesson-play"><svg width="20" height="24" viewBox="0 0 20 24" aria-hidden="true"><path d="m4 3 13 9-13 9Z" fill="currentColor"/></svg><span>Play lesson</span></span></span>
+    </summary>
+    <div class="lesson-player"><iframe title={`${title} — The Emily Post Institute`} data-src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`} width="960" height="540" allow="fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <p class="video-privacy">Playback connects to YouTube. If playback is unavailable: <a href={`https://www.youtube.com/watch?v=${videoId}`}>Open on YouTube</a> · <a href={sourceUrl}>Watch on the publisher’s page</a>.</p>
+  </details>
+  <p class="lesson-publisher">The Emily Post Institute · Video</p>
+  <h3>{title}</h3><p>{note}</p>
+  <div class="lesson-links"><a href={sourceUrl}>Source & video notes<Arrow/></a><a href={`/chapters/${chapter}/`}>Read the lesson<Arrow/></a></div>
+</article>
+<script>
+  document.querySelectorAll<HTMLDetailsElement>('.video-lesson').forEach(lesson=>{
+    lesson.addEventListener('toggle',()=>{
+      const frame=lesson.querySelector<HTMLIFrameElement>('iframe');
+      lesson.querySelector('summary')?.setAttribute('aria-label',`${lesson.open?'Close':'Play'} lesson: ${lesson.dataset.lessonTitle}`);
+      if(lesson.open&&frame&&!frame.src)frame.src=frame.dataset.src!;
+      // Closing also stops playback and releases the third-party connection.
+      if(!lesson.open&&frame)frame.removeAttribute('src');
+    });
+  });
+</script>

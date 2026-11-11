@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ChapterDirectory from '../../components/ChapterDirectory.astro';
+---
+<Layout title="The chapters" description="Six approachable chapters on business dining: prepare, take your seat, navigate the table, order, converse, and close the meal.">
+  <section class="guide-masthead section-shell"><h1>The evening,<br/>in six chapters.</h1><div><p>A field guide to feeling at home at a professional table. Read in order, or turn to the moment you need.</p><p class="masthead-note">Short reads. Practical words. Something to take with you.</p></div></section>
+  <section class="section-shell directory-page" aria-label="The six chapters"><ChapterDirectory headingLevel={2}/><p class="context-note">These chapters introduce common U.S. professional dining conventions. Customs differ across cultures, hosts, and individual needs. Consideration always comes first.</p></section>
+
+</Layout>
